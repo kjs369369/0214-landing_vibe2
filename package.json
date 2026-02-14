@@ -11,9 +11,10 @@
   "dependencies": {
     "@ai-sdk/anthropic": "^3.0.44",
     "@ai-sdk/openai": "^3.0.29",
+    "@ai-sdk/react": "^3.0.88",
     "@splinetool/react-spline": "^4.1.0",
     "@splinetool/runtime": "^1.12.56",
-    "ai": "^6.0.86",
+    "ai": "^4.1.0",
     "clsx": "^2.1.1",
     "framer-motion": "^12.34.0",
     "lucide-react": "^0.564.0",

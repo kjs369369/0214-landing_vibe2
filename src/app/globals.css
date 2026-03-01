@@ -1,6 +1,8 @@
 @import "tailwindcss";
 
-:root {
+/* ===== DARK MODE (default) ===== */
+:root,
+html.dark {
   --background: #000000;
   --foreground: #FFFFFF;
   --primary: #FF0000;
@@ -12,6 +14,47 @@
   --border: rgba(255, 0, 0, 0.15);
   --text-muted: #888888;
   --text-dim: #555555;
+  --card-bg: #0A0A0A;
+  --card-border: rgba(255, 255, 255, 0.06);
+  --input-bg: rgba(255, 255, 255, 0.05);
+  --input-border: rgba(255, 255, 255, 0.1);
+  --nav-bg: rgba(0, 0, 0, 0.9);
+  --chat-window-bg: #000000;
+  --chat-header-bg: #0A0A0A;
+  --chat-input-bg: #0A0A0A;
+  --chat-msg-user-bg: #FFFFFF;
+  --chat-msg-user-color: #000000;
+  --chat-msg-bot-bg: rgba(255, 255, 255, 0.05);
+  --chat-msg-bot-color: rgba(255, 255, 255, 0.9);
+  --chat-msg-bot-border: rgba(255, 255, 255, 0.1);
+}
+
+/* ===== LIGHT MODE ===== */
+html.light {
+  --background: #F5F5F5;
+  --foreground: #111111;
+  --primary: #FF0000;
+  --primary-dark: #CC0000;
+  --secondary: #0048BA;
+  --secondary-light: #3373D1;
+  --surface: #FFFFFF;
+  --surface-light: #F0F0F0;
+  --border: rgba(255, 0, 0, 0.2);
+  --text-muted: #555555;
+  --text-dim: #888888;
+  --card-bg: #FFFFFF;
+  --card-border: rgba(0, 0, 0, 0.08);
+  --input-bg: rgba(0, 0, 0, 0.04);
+  --input-border: rgba(0, 0, 0, 0.12);
+  --nav-bg: rgba(245, 245, 245, 0.95);
+  --chat-window-bg: #FFFFFF;
+  --chat-header-bg: #F5F5F5;
+  --chat-input-bg: #F5F5F5;
+  --chat-msg-user-bg: #FF0000;
+  --chat-msg-user-color: #FFFFFF;
+  --chat-msg-bot-bg: #F0F0F0;
+  --chat-msg-bot-color: #111111;
+  --chat-msg-bot-border: rgba(0, 0, 0, 0.08);
 }
 
 @theme inline {
@@ -55,10 +98,11 @@ html {
 }
 
 body {
-  background: #000000;
-  color: #FFFFFF;
+  background: var(--background);
+  color: var(--foreground);
   font-family: var(--font-sans), 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
   overflow-x: hidden;
+  transition: background 0.3s ease, color 0.3s ease;
 }
 
 /* ===== KINETIC TYPOGRAPHY SYSTEM ===== */
@@ -87,11 +131,12 @@ body {
 
 /* Kinetic Card */
 .kinetic-card {
-  background: #0A0A0A;
-  border: 1px solid rgba(255, 255, 255, 0.06);
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
   border-radius: 2px;
   position: relative;
   overflow: hidden;
+  transition: background 0.3s ease, border-color 0.3s ease;
 }
 
 .kinetic-card::before {
@@ -110,8 +155,8 @@ body {
 }
 
 .kinetic-card:hover {
-  border-color: rgba(255, 255, 255, 0.12);
-  background: #0F0F0F;
+  border-color: var(--card-border);
+  filter: brightness(1.05);
 }
 
 /* Brutalist Button */

@@ -4,14 +4,15 @@ import { streamText } from "ai";
 export const maxDuration = 30;
 
 export async function POST(req: Request) {
-    const { messages } = await req.json();
+    try {
+        const { messages } = await req.json();
 
-    const result = streamText({
-        model: openai("gpt-4o") as any,
-        messages: [
-            {
-                role: "system",
-                content: `당신은 'BSD 바이브코딩 센터'의 공식 AI 어시스턴트 '바이브봇(VibeBot)'입니다.
+        const result = streamText({
+            model: openai("gpt-4o-mini"),
+            messages: [
+                {
+                    role: "system",
+                    content: `당신은 'BSD 바이브코딩 센터'의 공식 AI 어시스턴트 '바이브봇(VibeBot)'입니다.
         
         [페르소나]
         1. 친절하면서도 전문적이고, 활기찬 에너지를 전달합니다.
@@ -27,10 +28,17 @@ export async function POST(req: Request) {
         - 질문자가 고민을 이야기하면 공감하며 시작하세요.
         - BSD 바이브코딩의 강점(AI 활용, 빠른 런칭)을 자연스럽게 언급하세요.
         - 대화 마지막에는 '무료 상담 신청'을 통해 더 자세한 안내를 받을 수 있다고 안내하세요.`,
-            },
-            ...messages,
-        ],
-    });
+                },
+                ...messages,
+            ],
+        });
 
-    return result.toTextStreamResponse();
+        return result.toDataStreamResponse();
+    } catch (error) {
+        console.error("Chat API error:", error);
+        return new Response(
+            JSON.stringify({ error: "Internal server error" }),
+            { status: 500, headers: { "Content-Type": "application/json" } }
+        );
+    }
 }

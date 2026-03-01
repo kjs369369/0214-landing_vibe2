@@ -33,6 +33,7 @@ export const metadata: Metadata = {
 };
 
 import ChatBot from "@/components/Chat/ChatBot";
+import { ThemeProvider } from "@/components/ThemeProvider";
 
 export default function RootLayout({
   children,
@@ -44,8 +45,10 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        {children}
-        <ChatBot />
+        <ThemeProvider>
+          {children}
+          <ChatBot />
+        </ThemeProvider>
       </body>
     </html>
   );
